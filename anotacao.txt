@@ -1,0 +1,3 @@
+django-cors
+ferramenta que pode ser implementada para proteger a aplicação.podendo impedir que alguns sites acessem a aplicação ou permitir todos.
+
