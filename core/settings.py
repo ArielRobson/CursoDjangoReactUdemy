@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'corsheaders',#teste
+    'corsheaders',#esse agora é outro teste
 ]
 
 MIDDLEWARE = [
