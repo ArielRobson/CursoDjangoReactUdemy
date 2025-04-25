@@ -41,7 +41,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'corsheaders',#teste
+    'corsheaders',
+    'accounts',
+    'companies',
 ]
 
 MIDDLEWARE = [
@@ -110,6 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'accounts.User' #informa o django que quem está responsavel pela tabela user é accounts
 
 
 # Internationalization
