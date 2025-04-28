@@ -17,11 +17,11 @@ class Signin(Base):
 
         enterprise = self.get_enterprise_user(user.id)
 
-        serializer = UserSerializer
+        serializer = UserSerializer(user)
 
         return Response({
             "user": serializer.data,
             "enterprise": enterprise,
-            "refresh": token,
-            "acess": token.acess_token
+            "refresh": str(token),
+            "access": str(token.access_token)
         })
