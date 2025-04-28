@@ -1,4 +1,4 @@
-from rest_framework.exceptions import AuthenticationFailed, ApiException
+from rest_framework.exceptions import AuthenticationFailed, APIException
 
 from django.contrib.auth.hashers import check_password, make_password
 
@@ -24,20 +24,20 @@ class Authentication:
 
     def signup(self, name, email, password, type_account='owner', company_id=False) -> None:
         if not name or name == '':
-            raise ApiException('O nome não deve ser null')
+            raise APIException('O nome não deve ser null')
         
         if not email or email == '':
-            raise ApiException('O email não deve ser null')
+            raise APIException('O email não deve ser null')
         
         if not password or password == '':
-            raise ApiException('O password não deve ser null')
+            raise APIException('O password não deve ser null')
         
         if type_account == 'employee' and not company_id:
-            raise ApiException('O id da empresa não deve ser null')
+            raise APIException('O id da empresa não deve ser null')
         
         user = User
         if user.objects.filter(email=email).exists():
-            raise ApiException('Este email já existe na plataforma')
+            raise APIException('Este email já existe na plataforma')
         
         password_hashed = make_password(password)
 
