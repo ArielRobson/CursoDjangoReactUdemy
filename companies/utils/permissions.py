@@ -21,3 +21,31 @@ def check_permission(user, method, permission_to):
 
     for group in groups:
         permissions = Group_Permissions.objects.values('permission_id').filter(group_id=group['group_id']).all()
+
+        for permission in permissions:
+            if Permission.objects.filter(id=permission['permission_id'], codename=required_permission).exists():
+                return True
+            
+class EmployeesPermission(permissions.BasePermission):
+    message = 'O funcionário não tem permissão para gerenciar os funcionários'
+
+    def has_permission(self, request, view):
+        return check_permission(request.user, request.method, permission_to='employee')
+    
+class GroupsPermission(permissions.BasePermission):
+    message = 'O funcionário não tem permissão para gerenciar os grupos'
+
+    def has_permission(self, request, view):
+        return check_permission(request.user, request.method, permission_to='group')
+    
+class GroupsPermissionsPermission(permissions.BasePermission):
+    message = 'O funcionário não tem permissão para gerenciar as permissões'
+
+    def has_permission(self, request, view):
+        return check_permission(request.user, request.method, permission_to='permission')
+    
+class TaskPermission(permissions.BasePermission):
+    message = 'O funcionário não tme permissão para gerencias as tarefas de todos os funcionários'
+
+    def has_permission(self, request, view):
+        return check_permission(request.user, request.method, permission_to='task')
