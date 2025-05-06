@@ -42,3 +42,18 @@ class EmployeeSerializer(serializers.ModelSerializer):
     
     def get_email(self, obj):
         return obj.user.email
+    
+    def get_groups(self, obj):
+        groupsDB = User_Groups.objects.filter(user_id=obj.user.id).all()
+        groupsDATA = []
+
+        for group in groupsDB:
+            groupsDATA.append({
+                "id": group.group.id,
+                "name": group.group.name
+            })
+
+        return groupsDATA
+    
+class GroupsSerializer(serializers.ModelSerializer):
+    permmission = serializers.SerializerMethodField()
